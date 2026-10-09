@@ -1,0 +1,7 @@
+pydantic
+PyYAML
+docxtpl
+black
+openpyxl
+jupyter
+ipykernel
