@@ -1,7 +1,7 @@
 import datetime
 
-from src.studying_plan_generator.studying_plan import StudyingPlan, Schedule, StudyingTermPeriod
-from src.studying_plan_generator.docx_plan import (
+from src.studying_plan import StudyingPlan, Schedule, StudyingTermPeriod
+from src.docx_plan import (
     DocxHours,
     DocxStudyingPlan,
     DocxStudyingProgram,
@@ -12,7 +12,7 @@ from src.studying_plan_generator.docx_plan import (
     DocxLesson,
     DocxSemesterTheme,
 )
-import src.studying_plan_generator.dates_calculator as dates_calculator
+import src.dates_calculator as dates_calculator
 
 def get_docx_hours(semester_number: int,  diagnostic_works_count: int, class_schedule: list[Schedule], hours_per_semester: int) -> DocxHours:
     return DocxHours(

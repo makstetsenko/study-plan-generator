@@ -1,7 +1,7 @@
-import src.studying_plan_generator.docx_plan as docx
-import src.studying_plan_generator.studying_plan as studying_plan
-from src.studying_plan_generator.app_args import get_app_args, AppArgs
-from src.studying_plan_generator.mapper import map_to_docx_plan
+import src.docx_plan as docx
+import src.studying_plan as studying_plan
+from src.app_args import get_app_args, AppArgs
+from src.mapper import map_to_docx_plan
 
 def main():
     app_args: AppArgs = get_app_args()
