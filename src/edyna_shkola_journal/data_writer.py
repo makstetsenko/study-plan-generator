@@ -68,7 +68,7 @@ def save_as_yml_plan(
 
             topics.append(Topic(title=t.title, lessons=lessons))
 
-        plan_semesters.append(Semester(topics=topics, diagnostic_works_count=1, terms=[]))
+        plan_semesters.append(Semester(topics=topics, terms=[]))
 
 
     plan = StudyingPlan(

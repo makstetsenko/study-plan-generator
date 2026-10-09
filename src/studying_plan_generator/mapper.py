@@ -81,7 +81,7 @@ def map_to_docx_plan(plan: StudyingPlan) -> DocxStudyingPlan:
 
             docx_themes.append(DocxSemesterTheme(title=topic.title, number=global_themes_counter, lessons=docx_lessons))
 
-        docx_hours.append(get_docx_hours(semester_index + 1, semester.diagnostic_works_count, plan.schedule, total_lessons))
+        docx_hours.append(get_docx_hours(semester_index + 1, len(semester.topics), plan.schedule, total_lessons))
         docx_plan_semesters.append(DocxSemester(semester_number=semester_index + 1, themes=docx_themes))
 
     docx_plan = DocxStudyingPlan(

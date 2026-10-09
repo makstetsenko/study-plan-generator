@@ -40,7 +40,7 @@ class Topic(BaseModel):
 class Semester(BaseModel):
     topics: list[Topic]
     terms: list[StudyingTermPeriod]
-    diagnostic_works_count: int
+
 
 
 class Schedule(BaseModel):
