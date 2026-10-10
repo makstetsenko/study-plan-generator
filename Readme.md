@@ -9,11 +9,27 @@ Configure topics in yml file. Examples are in `./example` directory.
 To generate docx:
 
 ```bash
-python main.py --docx-template templates/plan_without_group_results.docx --common-data-yml-path 'data/календарки/інформатика/common.yml' --topics-yml-path 'data/календарки/інформатика/5-Б.yml'
+python main.py \
+--docx-template templates/plan_without_group_results.docx \
+--common-data-yml-path 'data/календарки/інформатика/common.yml' \
+--topics-yml-path 'data/календарки/інформатика/5-Б.yml'
 ```
 
 To generate excel:
 
 ```bash
-python main.py --excel-template templates/topics-template.xlsx --common-data-yml-path 'data/календарки/інформатика/common.yml' --topics-yml-path 'data/календарки/інформатика/5-Б.yml'
+python main.py \
+--excel-template templates/topics-template.xlsx \
+--common-data-yml-path 'data/календарки/інформатика/common.yml' \
+--topics-yml-path 'data/календарки/інформатика/5-Б.yml'
+```
+
+To generate both excel and docx:
+
+```bash
+python main.py \
+--excel-template templates/topics-template.xlsx \
+--docx-template templates/plan_without_group_results.docx \
+--common-data-yml-path 'data/календарки/інформатика/common.yml' \
+--topics-yml-path 'data/календарки/інформатика/5-Б.yml'
 ```

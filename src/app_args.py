@@ -22,15 +22,19 @@ def raise_if_invalid_file_path(path: pathlib.Path, arg_name: str):
 def get_app_args() -> AppArgs:
     parser = argparse.ArgumentParser()
 
-    template_group = parser.add_mutually_exclusive_group(required=True)
-    template_group.add_argument("--docx-template")
-    template_group.add_argument("--excel-template")
+    parser.add_argument("--docx-template")
+    parser.add_argument("--excel-template")
 
     parser.add_argument("--common-data-yml-path", default="./data/common.yml")
     parser.add_argument("--topics-yml-path", required=True)
     parser.add_argument("--output-dir", default="./output")
 
     args = parser.parse_args()
+
+    if not args.docx_template and not args.excel_template:
+        parser.error(
+            "At least one of --docx-template or --excel-template is required"
+        )
 
     app_params = AppArgs(
         docx_template_path=pathlib.Path(args.docx_template) if not args.docx_template is None else None,
