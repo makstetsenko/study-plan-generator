@@ -42,7 +42,6 @@ class Semester(BaseModel):
     terms: list[StudyingTermPeriod]
 
 
-
 class Schedule(BaseModel):
     iso_weekday: int  # Monday=1, Sunday=7
     lessons_count: int = 1
