@@ -53,9 +53,10 @@ class DocxSemester(BaseModel):
 
 class DocxStudyingPlan(BaseModel):
     class_name: str
+    individual_student_name_gent: str | None = None
     semester_name_in_title: str
     hours: list[DocxHours]
-    textbooks: list[DocxTextbook]
+    textbooks: list[DocxTextbook] | None = None
     programs: list[DocxStudyingProgram]
     plan: list[DocxSemester]
     subject: DocxSubject

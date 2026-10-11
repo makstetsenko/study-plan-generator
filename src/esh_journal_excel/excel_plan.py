@@ -18,6 +18,9 @@ class ExcelPlanRow:
 class ExcelPlan:
     rows: list[ExcelPlanRow]
     class_name: str
+    subject_name: str
+    academic_year: str
+    individual_student_name_gent: str | None = None
 
 
 COLUMN_MAPPING = {
@@ -47,4 +50,8 @@ def write_excel_plan_to_file(
         for column, attribute in COLUMN_MAPPING.items():
             sheet[f"{column}{row_number}"] = getattr(plan_row, attribute)
 
-    workbook.save(output_dir_path.joinpath(plan.class_name + ".xlsx"))
+    individual_name = "" if plan.individual_student_name_gent is None else "_" + plan.individual_student_name_gent
+
+    workbook.save(
+        output_dir_path.joinpath(f"{plan.academic_year}_{plan.subject_name}_{plan.class_name}{individual_name}.xlsx")
+    )

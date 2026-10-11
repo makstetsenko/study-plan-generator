@@ -18,9 +18,15 @@ def map_to_excel_plan(plan: StudyingPlan) -> ExcelPlan:
                         topic_number=topic_counter,
                         topic=topic.title,
                         lesson_number=lesson_counter,
-                        lesson_name=lesson.topic,
+                        lesson_name=f"{lesson.safety_topic} {lesson.group_results} {lesson.topic}",
                         homework=lesson.homework,
                     )
                 )
 
-    return ExcelPlan(rows=rows, class_name=plan.class_name)
+    return ExcelPlan(
+        rows=rows,
+        class_name=plan.class_name,
+        academic_year=plan.academic_year,
+        subject_name=plan.subject.name,
+        individual_student_name_gent=plan.individual_student_name_gent,
+    )

@@ -29,13 +29,14 @@ def get_docx_hours(
 def get_lesson_dates(class_schedule: list[Schedule], terms: list[StudyingTermPeriod]) -> list[datetime.date]:
     lesson_schedule = [
         dates_calculator.LessonSchedule(
-            weekday=c.iso_weekday - 1, lessons_count=c.lessons_count, week_number=c.week_number
+            iso_weekday=c.iso_weekday, lessons_count=c.lessons_count, week_number=c.week_number
         )
         for c in class_schedule
     ]
-    lesson_terms = [dates_calculator.Term(start=c.start, end=c.end) for c in terms]
+    lesson_terms = [dates_calculator.Term(start=c.start, end=c.end, week_one_start=c.week_one_start) for c in terms]
     return dates_calculator.calculate_lessons(
-        terms=lesson_terms, schedules=lesson_schedule, week_one_start=terms[0].start
+        terms=lesson_terms,
+        schedules=lesson_schedule,
     )
 
 
@@ -95,11 +96,14 @@ def map_to_docx_plan(plan: StudyingPlan) -> DocxStudyingPlan:
         semester_name_in_title=plan.semester_name_in_title,
         hours=docx_hours,
         programs=[DocxStudyingProgram.model_validate(p.model_dump()) for p in plan.programs],
-        textbooks=[DocxTextbook.model_validate(t.model_dump()) for t in plan.textbooks],
+        textbooks=(
+            None if plan.textbooks is None else [DocxTextbook.model_validate(t.model_dump()) for t in plan.textbooks]
+        ),
         teacher=DocxTeacher.model_validate(plan.teacher.model_dump()),
         subject=DocxSubject.model_validate(plan.subject.model_dump()),
         academic_year=plan.academic_year,
         plan=docx_plan_semesters,
+        individual_student_name_gent=plan.individual_student_name_gent,
     )
 
     return docx_plan

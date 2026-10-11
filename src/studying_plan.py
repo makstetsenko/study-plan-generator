@@ -43,7 +43,7 @@ class Semester(BaseModel):
 
 
 class Schedule(BaseModel):
-    iso_weekday: int  # Monday=1, Sunday=7
+    iso_weekday: int | None  # Monday=1, Sunday=7
     lessons_count: int = 1
     week_number: int | None = None  # None = every week
 
@@ -51,6 +51,7 @@ class Schedule(BaseModel):
 class StudyingTermPeriod(BaseModel):
     start: datetime.date  # inclusive
     end: datetime.date  # inclusive
+    week_one_start: datetime.date | None = None
 
 
 class StudyingPlan(BaseModel):
@@ -59,7 +60,8 @@ class StudyingPlan(BaseModel):
     academic_year: str
     semester_name_in_title: str
     class_name: str
-    textbooks: list[Textbook]
+    individual_student_name_gent: str | None = None
+    textbooks: list[Textbook] | None = None
     programs: list[StudyingProgram]
     semesters: list[Semester]
     schedule: list[Schedule]
